@@ -86,7 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="btnShowDockpane.cs" />
-    <Compile Include="Module1.cs" />
+    <Compile Include="ShowPro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

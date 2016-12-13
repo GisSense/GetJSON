@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace GetJSON
 {
-    internal class Module1 : Module
+    internal class ShowPro : Module
     {
-        private static Module1 _this = null;
+        private static ShowPro _this = null;
 
         /// <summary>
         /// Retrieve the singleton instance to this module here
         /// </summary>
-        public static Module1 Current
+        public static ShowPro Current
         {
             get
             {
-                return _this ?? (_this = (Module1)FrameworkApplication.FindModule("GetJSON_Module"));
+                return _this ?? (_this = (ShowPro)FrameworkApplication.FindModule("GetJSON_Module"));
             }
         }
 
