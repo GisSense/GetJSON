@@ -9,9 +9,9 @@
     <Name>GetJSON</Name>   
     <Description>GetJSON description</Description>
     <Image>Images\AddinDesktop32.png</Image>
-    <Author>admin</Author>
-    <Company>Acme</Company>
-    <Date>12/13/2016 9:40:52 PM, 2016</Date>
+    <Author>C.Kleiboer</Author>
+    <Company>GisSense BV</Company>
+    <Date>December 2016</Date>
     <Subject>Framework</Subject>
     <!-- Note subject can be one or more of these topics:
                     Content, Framework, Editing, Geodatabase, Geometry, Geoprocessing, Layouts, Map Authoring, Map Exploration -->
