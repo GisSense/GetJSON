@@ -1,2 +1,2 @@
 # GetJSON
-Create JSON (featureset) from selected features
+Create JSON (featureset) from selected features in ArcGIS Pro
