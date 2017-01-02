@@ -25,7 +25,7 @@
             <DockPanel DockPanel.Dock="Top" Grid.RowSpan="2">
                 <StackPanel Margin="0,5" Orientation="Horizontal" HorizontalAlignment="Left" DockPanel.Dock="Left">
                     <Button x:Name="btnClearText" Content="Clear text" Height="20" Width="60" RenderTransformOrigin="-0.378,0.494" Click="btnClearText_Click"/>
-                    <Button x:Name="btnPointer" Content="tool" Height="20" Width="60" RenderTransformOrigin="-0.378,0.494" Click="btnPointer_Click"  />
+                    <ToggleButton x:Name="btnPointer" Content="CopyCat"  Height="20" Width="60" RenderTransformOrigin="-0.378,0.494" Click="btnPointer_Click"  />
                 </StackPanel>
                 <ExtensionsControls:BurgerButton HorizontalAlignment="Right" DockPanel.Dock="Right"
                     ToolTip="{Binding BurgerButtonTooltip}"

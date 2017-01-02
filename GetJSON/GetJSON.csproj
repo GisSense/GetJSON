@@ -90,7 +90,7 @@
     </Compile>
     <Compile Include="DockpaneGJViewModel.cs" />
     <Compile Include="PointerTool.cs" />
-    <Compile Include="ShowPro.cs" />
+    <Compile Include="GetPro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

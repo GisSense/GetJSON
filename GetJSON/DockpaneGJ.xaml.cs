@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ArcGIS.Desktop.Framework;
+using ArcGIS.Desktop.Framework.Events;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,11 +29,34 @@ namespace GetJSON
         {
             InitializeComponent();
             timer.Tick += new EventHandler(ClearMessageEventHandler);
+            ActiveToolChangedEvent.Subscribe(onToolChanged);
+
+        }
+        ~DockpaneGJView()
+        {
+            ActiveToolChangedEvent.Unsubscribe(onToolChanged);
+        }
+
+        private void onToolChanged(ToolEventArgs obj)
+        {
+            if (obj.CurrentID == "GetJSON_PointerTool")
+            {
+                btnPointer.IsChecked = true;
+            } else
+            {
+                btnPointer.IsChecked = false;
+            }
         }
 
         private void btnPointer_Click(object sender, RoutedEventArgs e)
         {
-            //PointerTool pt = new PointerTool();
+            var iCommand = FrameworkApplication.GetPlugInWrapper("GetJSON_PointerTool") as ICommand;
+            if (iCommand != null)
+            {
+                // Let ArcGIS Pro do the work for us
+                if (iCommand.CanExecute(null)) iCommand.Execute(null);
+            }
+
         }
 
         private void btnClearText_Click(object sender, RoutedEventArgs e)
@@ -62,6 +87,6 @@ namespace GetJSON
             (sender as DispatcherTimer).Stop();
             lblMessage.Foreground = Brushes.Blue;
         }
-
+        
     }
 }
