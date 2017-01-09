@@ -1,5 +1,6 @@
 ﻿using ArcGIS.Desktop.Framework;
 using ArcGIS.Desktop.Framework.Events;
+using ArcGIS.Desktop.Mapping.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using ArcGIS.Desktop.Mapping;
 
 namespace GetJSON
 {
@@ -30,31 +32,44 @@ namespace GetJSON
             InitializeComponent();
             timer.Tick += new EventHandler(ClearMessageEventHandler);
             ActiveToolChangedEvent.Subscribe(onToolChanged);
+            //Active Pane Check
+            ActivePaneChangedEvent.Subscribe(onPaneChanged);
 
         }
+
         ~DockpaneGJView()
         {
             ActiveToolChangedEvent.Unsubscribe(onToolChanged);
+            ActivePaneChangedEvent.Unsubscribe(onPaneChanged);
         }
 
         private void onToolChanged(ToolEventArgs obj)
         {
+            btnPointer.IsChecked = false;
             if (obj.CurrentID == "GetJSON_PointerTool")
             {
                 btnPointer.IsChecked = true;
-            } else
+            }
+        }
+        private void onPaneChanged(PaneEventArgs obj)
+        {
+            btnPointer.IsEnabled = true;
+            if (obj.IncomingPane == null || !(obj.IncomingPane is IMapPane))
             {
-                btnPointer.IsChecked = false;
+                btnPointer.IsEnabled = false;
             }
         }
 
+
         private void btnPointer_Click(object sender, RoutedEventArgs e)
         {
-            var iCommand = FrameworkApplication.GetPlugInWrapper("GetJSON_PointerTool") as ICommand;
-            if (iCommand != null)
+            IPlugInWrapper piw = FrameworkApplication.GetPlugInWrapper("GetJSON_PointerTool");
+            ICommand myCmd = piw as ICommand;
+            if (myCmd != null)
             {
-                // Let ArcGIS Pro do the work for us
-                if (iCommand.CanExecute(null)) iCommand.Execute(null);
+                if (piw.Enabled) {
+                    if (myCmd.CanExecute(null)) myCmd.Execute(null);
+                }
             }
 
         }
