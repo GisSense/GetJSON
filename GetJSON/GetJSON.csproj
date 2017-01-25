@@ -89,6 +89,7 @@
       <DependentUpon>DockpaneGJ.xaml</DependentUpon>
     </Compile>
     <Compile Include="DockpaneGJViewModel.cs" />
+    <Compile Include="DynamicSelectLayerMenu.cs" />
     <Compile Include="PointerTool.cs" />
     <Compile Include="GetPro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,6 +117,18 @@
   </ItemGroup>
   <ItemGroup>
     <AddInContent Include="Images\GenericButtonRed32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AddInContent Include="Images\GenericButtonGreen16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AddInContent Include="Images\GenericButtonGreen32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AddInContent Include="DarkImages\GenericButtonGreen16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AddInContent Include="DarkImages\GenericButtonGreen32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask AssemblyFile="C:\Program Files\ArcGIS\Pro\bin\proapp-sdk-MSBuild.dll" TaskName="proapp_sdk_MSBuild.PackageAddIn" />

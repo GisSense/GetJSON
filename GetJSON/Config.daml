@@ -33,6 +33,9 @@
         </group>
       </groups>
       <controls>
+        <dynamicMenu id="DynamicMenu_SelectLayer"
+          className="DynamicSelectLayerMenu"
+          caption="Select layer" />
         <!-- add your controls here -->
         <button id="GetJSON_DockpaneGJ_ShowButton" caption="GetJSON" className="DockpaneGJ_ShowButton" loadOnClick="true" smallImage="Images\GenericButtonPurple16.png" largeImage="Images\GenericButtonPurple32.png">
           <tooltip heading="Show Dockpane">Show Dockpane<disabledText /></tooltip>
