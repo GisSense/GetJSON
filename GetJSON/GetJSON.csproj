@@ -40,6 +40,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -85,11 +86,14 @@
     <AddInContent Include="Images\AddInDesktop32.png" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataContextTest.cs" />
+    <Compile Include="Events\GetJsonSelectionFinishedEvent.cs" />
     <Compile Include="DockpaneGJ.xaml.cs">
       <DependentUpon>DockpaneGJ.xaml</DependentUpon>
     </Compile>
     <Compile Include="DockpaneGJViewModel.cs" />
     <Compile Include="DynamicSelectLayerMenu.cs" />
+    <Compile Include="Events\GetJsonSelectionFinishedEventArgs.cs" />
     <Compile Include="PointerTool.cs" />
     <Compile Include="GetPro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -8,7 +8,7 @@ using ArcGIS.Desktop.Mapping;
 using ArcGIS.Desktop.Framework;
 using ArcGIS.Desktop.Framework.Events;
 using ArcGIS.Desktop.Framework.Threading.Tasks;
-
+using ArcGIS.Desktop.Core.Geoprocessing;
 
 namespace GetJSON
 {
@@ -19,7 +19,6 @@ namespace GetJSON
             IsSketchTool = true;
             SketchType = SketchGeometryType.Rectangle;
             SketchOutputMode = SketchOutputMode.Map;
-
         }
 
         protected override async Task<bool> OnSketchCompleteAsync(Geometry geometry)
@@ -34,6 +33,16 @@ namespace GetJSON
 
             //2 build a context menu with the layers and (re)select by user's layer-choice
             ShowContextMenu(bottomRight, allfeatures);
+
+            //3 
+            BasicFeatureLayer bfl = null;
+            foreach (KeyValuePair<BasicFeatureLayer, List<long>> entry in allfeatures)
+            {
+                if (entry.Key.SelectionCount > 0)
+                {
+                    bfl = entry.Key;
+                }
+            }
 
             return true;
         }

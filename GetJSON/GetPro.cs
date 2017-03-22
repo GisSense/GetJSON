@@ -8,6 +8,12 @@ using ArcGIS.Desktop.Framework.Contracts;
 using System.Threading.Tasks;
 using ArcGIS.Desktop.Framework.Events;
 using ArcGIS.Desktop.Core.Events;
+using ArcGIS.Desktop.Mapping;
+using ArcGIS.Core.Data;
+using GetJSON.Events;
+using ArcGIS.Core.Geometry;
+using ArcGIS.Desktop.Core.Geoprocessing;
+using ArcGIS.Desktop.Framework.Threading.Tasks;
 
 namespace GetJSON
 {
@@ -26,16 +32,24 @@ namespace GetJSON
             }
         }
 
-        #region Overrides
-        
-            /// <summary>
-            /// Called by Framework when ArcGIS Pro is closing
-            /// </summary>
-            /// <returns>False to prevent Pro from closing, otherwise True</returns>
+        #region ----- Overrides -----
+
+        protected override bool Initialize()
+        {
+            //subscribe on sel
+            GetJsonSelectionFinishedEvent.Subscribe(OnGetJsonSelectionFinished);
+
+            return base.Initialize();
+        }
+
+        /// <summary>
+        /// Called by Framework when ArcGIS Pro is closing
+        /// </summary>
+        /// <returns>False to prevent Pro from closing, otherwise True</returns>
         protected override bool CanUnload()
         {
-            //TODO - add your business logic
-            //return false to ~cancel~ Application close
+            GetJsonSelectionFinishedEvent.Unsubscribe(OnGetJsonSelectionFinished);
+
             return true;
         }
 
@@ -55,9 +69,39 @@ namespace GetJSON
 
         }
 
-        #endregion Overrides
-        
+        #endregion ----- Overrides -----
 
+        private async void OnGetJsonSelectionFinished(GetJsonSelectionFinishedEventArgs args)
+        {
+            System.Diagnostics.Debug.WriteLine("0: " + DateTime.Now);
+            //fille the textbox with info
+            GetJSON.DockpaneGJViewModel.UpdateText("Aap2");
+            Task<IGPResult> myTsk = QueuedTask.Run(() =>
+            {
+                BasicFeatureLayer bfl = args.BasicFL;
+                var aap = new List<object>() { bfl, };
+                System.Diagnostics.Debug.WriteLine("1: " + DateTime.Now);
+                Task<IGPResult> taskRes =
+                   Geoprocessing.ExecuteToolAsync("conversion.FeaturesToJSON",
+                                                            Geoprocessing.MakeValueArray(aap, null, "FORMATTED"));
+                System.Diagnostics.Debug.WriteLine("2: " + DateTime.Now);
+                return taskRes;
+            });
+            System.Diagnostics.Debug.WriteLine("3: " + DateTime.Now);
+            IGPResult resultaat = await myTsk;
+            if (!(resultaat.IsFailed || resultaat.IsCanceled))
+            {
+                ////filename
+                //string filename = aapje.ReturnValue;
+                ////goedgegaan
+                //bool failed = aapje.IsFailed || aapje.IsCanceled;
+                System.Diagnostics.Debug.WriteLine("4: " + myTsk.Result.ReturnValue + " " + DateTime.Now);
+                //read the file
+                //fill the textbox
+                //close and delete the file
+
+            }
+        }
 
     }
 }

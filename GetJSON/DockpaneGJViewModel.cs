@@ -5,13 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using ArcGIS.Desktop.Framework;
 using ArcGIS.Desktop.Framework.Contracts;
+using System.ComponentModel;
 
 namespace GetJSON
 {
-    internal class DockpaneGJViewModel : DockPane
+    internal class DockpaneGJViewModel : DockPane//, INotifyPropertyChanged
     {
         private const string _dockPaneID = "GetJSON_DockpaneGJ";
         private const string _menuID = "GetJSON_DockpaneGJ_Menu";
+        private string txtJson = "";
+        //public event PropertyChangedEventHandler PropertyChanged;
 
         protected DockpaneGJViewModel() { }
 
@@ -23,8 +26,10 @@ namespace GetJSON
             DockPane pane = FrameworkApplication.DockPaneManager.Find(_dockPaneID);
             if (pane == null)
                 return;
-
+            //((DockpaneGJViewModel)pane).TextJson = "Poep";
             pane.Activate();
+
+            return;
         }
 
         /// <summary>
@@ -42,12 +47,17 @@ namespace GetJSON
 
         #region Burger Button
 
+        private string test = "";
         /// <summary>
         /// Tooltip shown when hovering over the burger button.
         /// </summary>
         public string BurgerButtonTooltip
         {
-            get { return "Options"; }
+            get { return test; }//"Options"; }
+            set
+            {
+                SetProperty(ref test, value, () => BurgerButtonTooltip);
+            }
         }
 
         /// <summary>
@@ -57,7 +67,34 @@ namespace GetJSON
         {
             get { return FrameworkApplication.CreateContextMenu(_menuID); }
         }
+
+        internal static void UpdateText(string v)
+        {
+            DockPane pane = FrameworkApplication.DockPaneManager.Find(_dockPaneID);
+            if (pane != null)
+            {
+                string test = ((DockpaneGJViewModel)pane).TextJson;
+                ((DockpaneGJViewModel) pane).TextJson = v;
+                test = ((DockpaneGJViewModel)pane).TextJson;
+                ((DockpaneGJViewModel)pane).BurgerButtonTooltip = DateTime.Now.ToString();
+                DataContextTest.Instance.TextJson = DateTime.Now.ToString();
+            }
+
+        }
         #endregion
+        internal string TextJson
+        {
+            get
+            {
+                return this.txtJson;
+            }
+            set
+            {
+                SetProperty(ref this.txtJson, value, () => TextJson);
+                //base..PropertyChanged(this, new PropertyChangedEventArgs("TextJson"));
+                
+            }
+        }
     }
 
     /// <summary>

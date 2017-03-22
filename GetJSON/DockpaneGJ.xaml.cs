@@ -70,6 +70,10 @@ namespace GetJSON
                 if (piw.Enabled) {
                     if (myCmd.CanExecute(null)) myCmd.Execute(null);
                 }
+                else if (FrameworkApplication.GetPlugInWrapper("GetJSON_PointerTool").Enabled)
+                {
+                    if (myCmd.CanExecute(null)) myCmd.Execute(null);
+                }
             }
 
         }
@@ -102,6 +106,15 @@ namespace GetJSON
             (sender as DispatcherTimer).Stop();
             lblMessage.Foreground = Brushes.Blue;
         }
-        
+
+        private void btnPointer_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+          
+        }
+
+        private void txbJSON_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string z = "";
+        }
     }
 }

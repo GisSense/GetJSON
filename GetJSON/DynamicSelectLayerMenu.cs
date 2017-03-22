@@ -8,6 +8,11 @@ using ArcGIS.Desktop.Mapping;
 using ArcGIS.Desktop.Framework.Threading.Tasks;
 using ArcGIS.Core.Data;
 using System.Windows.Controls;
+using ArcGIS.Core.Geometry;
+using System.IO;
+using System.Runtime.Serialization.Json;
+using ArcGIS.Desktop.Core.Geoprocessing;
+using GetJSON.Events;
 
 namespace GetJSON
 {
@@ -45,16 +50,28 @@ namespace GetJSON
             //reselect and start converting
             QueuedTask.Run(() =>
             {
-                foreach (KeyValuePair<BasicFeatureLayer, List<long>> entry in allSelectedfeatures)
+                foreach (BasicFeatureLayer bfl in allSelectedfeatures.Keys)
                 {
-                    if (entry.Key.Name != selectedLayer.Key.Name)
+                    if (bfl.Name != selectedLayer.Key.Name)
                     {
                         //clear this selection
-                        entry.Key.ClearSelection();
+                        bfl.ClearSelection();
                     }
                 }
+                //foreach (KeyValuePair<BasicFeatureLayer, List<long>> entry in allSelectedfeatures)
+                //{
+                //    if (entry.Key.Name != selectedLayer.Key.Name)
+                //    {
+                //        //clear this selection
+                //        entry.Key.ClearSelection();
+                //    }
+                //}
+
+                //publish event GetJsonSelectionFinishedEvent with basiclayerfeature
+                GetJsonSelectionFinishedEvent.Publish(new GetJsonSelectionFinishedEventArgs(selectedLayer.Key));
             });
 
+            string x = "processing";
         }
 
     }
