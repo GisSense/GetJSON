@@ -47,18 +47,6 @@ namespace GetJSON
 
         #region Burger Button
 
-        private string test = "";
-        /// <summary>
-        /// Tooltip shown when hovering over the burger button.
-        /// </summary>
-        public string BurgerButtonTooltip
-        {
-            get { return test; }//"Options"; }
-            set
-            {
-                SetProperty(ref test, value, () => BurgerButtonTooltip);
-            }
-        }
 
         /// <summary>
         /// Menu shown when burger button is clicked.
@@ -71,18 +59,19 @@ namespace GetJSON
         internal static void UpdateText(string v)
         {
             DockPane pane = FrameworkApplication.DockPaneManager.Find(_dockPaneID);
+            
             if (pane != null)
             {
-                string test = ((DockpaneGJViewModel)pane).TextJson;
-                ((DockpaneGJViewModel) pane).TextJson = v;
-                test = ((DockpaneGJViewModel)pane).TextJson;
-                ((DockpaneGJViewModel)pane).BurgerButtonTooltip = DateTime.Now.ToString();
-                DataContextTest.Instance.TextJson = DateTime.Now.ToString();
+                //string test = ((DockpaneGJViewModel)pane).TextJson;
+                ((DockpaneGJViewModel)pane).TextJson = v;
+                //test = ((DockpaneGJViewModel)pane).TextJson;
+                //((DockpaneGJViewModel)pane).BurgerButtonTooltip = v;
+                //DataContextTest.Instance.TextJson = DateTime.Now.ToString();
             }
 
         }
         #endregion
-        internal string TextJson
+        public string TextJson
         {
             get
             {
@@ -91,10 +80,22 @@ namespace GetJSON
             set
             {
                 SetProperty(ref this.txtJson, value, () => TextJson);
-                //base..PropertyChanged(this, new PropertyChangedEventArgs("TextJson"));
-                
             }
         }
+
+        //private string test = "";
+        ///// <summary>
+        ///// Tooltip shown when hovering over the burger button.
+        ///// </summary>
+        //public string BurgerButtonTooltip
+        //{
+        //    get { return test; }//"Options"; }
+        //    set
+        //    {
+        //        SetProperty(ref test, value, () => BurgerButtonTooltip);
+        //    }
+        //}
+
     }
 
     /// <summary>

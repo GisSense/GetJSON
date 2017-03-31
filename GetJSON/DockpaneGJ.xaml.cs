@@ -112,8 +112,11 @@ namespace GetJSON
           
         }
 
-        private void txbJSON_TextChanged(object sender, TextChangedEventArgs e)
+        private void txbJSON_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
+            String g = e.NewValue.ToString();
+            DependencyProperty zzzop = e.Property;
+
             string z = "";
         }
     }

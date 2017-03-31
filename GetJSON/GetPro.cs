@@ -75,7 +75,7 @@ namespace GetJSON
         {
             System.Diagnostics.Debug.WriteLine("0: " + DateTime.Now);
             //fille the textbox with info
-            GetJSON.DockpaneGJViewModel.UpdateText("Aap2");
+            DockpaneGJViewModel.UpdateText("Processing...");
             Task<IGPResult> myTsk = QueuedTask.Run(() =>
             {
                 BasicFeatureLayer bfl = args.BasicFL;
@@ -96,6 +96,7 @@ namespace GetJSON
                 ////goedgegaan
                 //bool failed = aapje.IsFailed || aapje.IsCanceled;
                 System.Diagnostics.Debug.WriteLine("4: " + myTsk.Result.ReturnValue + " " + DateTime.Now);
+                DockpaneGJViewModel.UpdateText(myTsk.Result.ReturnValue);
                 //read the file
                 //fill the textbox
                 //close and delete the file

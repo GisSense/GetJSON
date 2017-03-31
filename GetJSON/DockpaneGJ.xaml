@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"                          
              xmlns:ExtensionsControls="clr-namespace:ArcGIS.Desktop.Extensions.Controls;assembly=ArcGIS.Desktop.Extensions"                       
              mc:Ignorable="d" 
+             d:DataContext="{Binding Path=DockpaneGJViewModel}"
              MinWidth="240">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -31,7 +32,10 @@
                     ToolTip="{Binding BurgerButtonTooltip}"
                     PopupMenu="{Binding BurgerButtonMenu}" Margin="0" Width="22" HorizontalContentAlignment="Right" />
             </DockPanel>
-            <TextBox DockPanel.Dock="Top" x:Name="txbJSON" TextWrapping="Wrap" Cursor="IBeam" AcceptsReturn="True" AcceptsTab="True" AllowDrop="True" ForceCursor="True" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" Panel.ZIndex="1" UseLayoutRounding="True" VerticalContentAlignment="Stretch" DataContext="GetJSON.DataContextTest" Text="{Binding Path=TextJson}" TextChanged="txbJSON_TextChanged" />
+            <TextBox DockPanel.Dock="Top" x:Name="txbJSON" TextWrapping="Wrap" Cursor="IBeam" AcceptsReturn="True" 
+                     AcceptsTab="True" AllowDrop="True" ForceCursor="True" HorizontalScrollBarVisibility="Visible" 
+                     VerticalScrollBarVisibility="Visible" Panel.ZIndex="1" UseLayoutRounding="True" VerticalContentAlignment="Stretch" 
+                     Text="{Binding TextJson, Mode=OneWay}" DataContextChanged="txbJSON_DataContextChanged" />
         </DockPanel>
 
     </Grid>
