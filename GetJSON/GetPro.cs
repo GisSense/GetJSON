@@ -92,15 +92,15 @@ namespace GetJSON
             if (!(resultaat.IsFailed || resultaat.IsCanceled))
             {
                 ////filename
-                //string filename = aapje.ReturnValue;
+                string filename = myTsk.Result.ReturnValue;
                 ////goedgegaan
-                //bool failed = aapje.IsFailed || aapje.IsCanceled;
                 System.Diagnostics.Debug.WriteLine("4: " + myTsk.Result.ReturnValue + " " + DateTime.Now);
-                DockpaneGJViewModel.UpdateText(myTsk.Result.ReturnValue);
                 //read the file
+                //todo
                 //fill the textbox
+                DockpaneGJViewModel.UpdateText(filename);
                 //close and delete the file
-
+                //todo
             }
         }
 

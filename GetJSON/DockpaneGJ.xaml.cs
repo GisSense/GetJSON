@@ -106,18 +106,6 @@ namespace GetJSON
             (sender as DispatcherTimer).Stop();
             lblMessage.Foreground = Brushes.Blue;
         }
-
-        private void btnPointer_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-          
-        }
-
-        private void txbJSON_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            String g = e.NewValue.ToString();
-            DependencyProperty zzzop = e.Property;
-
-            string z = "";
-        }
+        
     }
 }

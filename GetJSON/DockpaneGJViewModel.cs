@@ -9,12 +9,11 @@ using System.ComponentModel;
 
 namespace GetJSON
 {
-    internal class DockpaneGJViewModel : DockPane//, INotifyPropertyChanged
+    internal class DockpaneGJViewModel : DockPane
     {
         private const string _dockPaneID = "GetJSON_DockpaneGJ";
         private const string _menuID = "GetJSON_DockpaneGJ_Menu";
         private string txtJson = "";
-        //public event PropertyChangedEventHandler PropertyChanged;
 
         protected DockpaneGJViewModel() { }
 
@@ -26,7 +25,6 @@ namespace GetJSON
             DockPane pane = FrameworkApplication.DockPaneManager.Find(_dockPaneID);
             if (pane == null)
                 return;
-            //((DockpaneGJViewModel)pane).TextJson = "Poep";
             pane.Activate();
 
             return;
@@ -46,8 +44,6 @@ namespace GetJSON
         }
 
         #region Burger Button
-
-
         /// <summary>
         /// Menu shown when burger button is clicked.
         /// </summary>
@@ -62,11 +58,7 @@ namespace GetJSON
             
             if (pane != null)
             {
-                //string test = ((DockpaneGJViewModel)pane).TextJson;
                 ((DockpaneGJViewModel)pane).TextJson = v;
-                //test = ((DockpaneGJViewModel)pane).TextJson;
-                //((DockpaneGJViewModel)pane).BurgerButtonTooltip = v;
-                //DataContextTest.Instance.TextJson = DateTime.Now.ToString();
             }
 
         }
@@ -82,19 +74,6 @@ namespace GetJSON
                 SetProperty(ref this.txtJson, value, () => TextJson);
             }
         }
-
-        //private string test = "";
-        ///// <summary>
-        ///// Tooltip shown when hovering over the burger button.
-        ///// </summary>
-        //public string BurgerButtonTooltip
-        //{
-        //    get { return test; }//"Options"; }
-        //    set
-        //    {
-        //        SetProperty(ref test, value, () => BurgerButtonTooltip);
-        //    }
-        //}
 
     }
 

@@ -29,7 +29,7 @@ namespace GetJSON
             }
         }
 
-        internal string TextJson
+        public string TextJson
         {
             get
             {

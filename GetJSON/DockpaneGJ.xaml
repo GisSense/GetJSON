@@ -26,7 +26,7 @@
             <DockPanel DockPanel.Dock="Top" Grid.RowSpan="2">
                 <StackPanel Margin="0,5" Orientation="Horizontal" HorizontalAlignment="Left" DockPanel.Dock="Left">
                     <Button x:Name="btnClearText" Content="Clear text" Height="20" Width="60" RenderTransformOrigin="-0.378,0.494" Click="btnClearText_Click"/>
-                    <ToggleButton x:Name="btnPointer" Content="CopyCat"  Height="20" Width="60" RenderTransformOrigin="-0.378,0.494" Click="btnPointer_Click" IsEnabledChanged="btnPointer_IsEnabledChanged" />
+                    <ToggleButton x:Name="btnPointer" Content="CopyCat"  Height="20" Width="60" RenderTransformOrigin="-0.378,0.494" Click="btnPointer_Click" />
                 </StackPanel>
                 <ExtensionsControls:BurgerButton HorizontalAlignment="Right" DockPanel.Dock="Right"
                     ToolTip="{Binding BurgerButtonTooltip}"
@@ -35,7 +35,7 @@
             <TextBox DockPanel.Dock="Top" x:Name="txbJSON" TextWrapping="Wrap" Cursor="IBeam" AcceptsReturn="True" 
                      AcceptsTab="True" AllowDrop="True" ForceCursor="True" HorizontalScrollBarVisibility="Visible" 
                      VerticalScrollBarVisibility="Visible" Panel.ZIndex="1" UseLayoutRounding="True" VerticalContentAlignment="Stretch" 
-                     Text="{Binding TextJson, Mode=OneWay}" DataContextChanged="txbJSON_DataContextChanged" />
+                     Text="{Binding TextJson, Mode=OneWay}" />
         </DockPanel>
 
     </Grid>
