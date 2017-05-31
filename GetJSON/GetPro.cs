@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Input;
 using ArcGIS.Desktop.Framework;
 using ArcGIS.Desktop.Framework.Contracts;
 using System.Threading.Tasks;
-using ArcGIS.Desktop.Framework.Events;
-using ArcGIS.Desktop.Core.Events;
 using ArcGIS.Desktop.Mapping;
-using ArcGIS.Core.Data;
 using GetJSON.Events;
-using ArcGIS.Core.Geometry;
 using ArcGIS.Desktop.Core.Geoprocessing;
 using ArcGIS.Desktop.Framework.Threading.Tasks;
+using System.IO;
 
 namespace GetJSON
 {
@@ -73,34 +68,29 @@ namespace GetJSON
 
         private async void OnGetJsonSelectionFinished(GetJsonSelectionFinishedEventArgs args)
         {
-            System.Diagnostics.Debug.WriteLine("0: " + DateTime.Now);
-            //fille the textbox with info
+            //fill the textbox with info
             DockpaneGJViewModel.UpdateText("Processing...");
+            //execute the geoprocessing tool for creating json
             Task<IGPResult> myTsk = QueuedTask.Run(() =>
             {
                 BasicFeatureLayer bfl = args.BasicFL;
-                var aap = new List<object>() { bfl, };
-                System.Diagnostics.Debug.WriteLine("1: " + DateTime.Now);
+                var flist = new List<object>() { bfl, };
                 Task<IGPResult> taskRes =
-                   Geoprocessing.ExecuteToolAsync("conversion.FeaturesToJSON",
-                                                            Geoprocessing.MakeValueArray(aap, null, "FORMATTED"));
-                System.Diagnostics.Debug.WriteLine("2: " + DateTime.Now);
+                   Geoprocessing.ExecuteToolAsync("conversion.FeaturesToJSON", Geoprocessing.MakeValueArray(flist, null, "FORMATTED"));
                 return taskRes;
             });
-            System.Diagnostics.Debug.WriteLine("3: " + DateTime.Now);
             IGPResult resultaat = await myTsk;
             if (!(resultaat.IsFailed || resultaat.IsCanceled))
             {
                 ////filename
                 string filename = myTsk.Result.ReturnValue;
-                ////goedgegaan
-                System.Diagnostics.Debug.WriteLine("4: " + myTsk.Result.ReturnValue + " " + DateTime.Now);
                 //read the file
-                //todo
+                string contents = File.ReadAllText(@filename);
                 //fill the textbox
-                DockpaneGJViewModel.UpdateText(filename);
-                //close and delete the file
-                //todo
+                DockpaneGJViewModel.UpdateText(contents);
+            } else
+            {
+                DockpaneGJViewModel.UpdateText("Sorry, but features can't be converted to JSON. " + Environment.NewLine + "Response: " + resultaat.ReturnValue);
             }
         }
 

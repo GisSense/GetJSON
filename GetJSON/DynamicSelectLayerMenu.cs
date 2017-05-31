@@ -41,7 +41,12 @@ namespace GetJSON
             {
                 string layername = entry.Key.Name;
                 int selCount = entry.Value.Count;
-                this.Add($"{layername} ({selCount})", "", false, true, false, theAction, entry);
+                bool enableIt = false;
+                if (selCount <= 1000)
+                {
+                    enableIt = true;
+                }
+                this.Add($"{layername} ({selCount})", "", false, enableIt, false, theAction, entry);
             }
         }
 
@@ -58,20 +63,10 @@ namespace GetJSON
                         bfl.ClearSelection();
                     }
                 }
-                //foreach (KeyValuePair<BasicFeatureLayer, List<long>> entry in allSelectedfeatures)
-                //{
-                //    if (entry.Key.Name != selectedLayer.Key.Name)
-                //    {
-                //        //clear this selection
-                //        entry.Key.ClearSelection();
-                //    }
-                //}
 
                 //publish event GetJsonSelectionFinishedEvent with basiclayerfeature
                 GetJsonSelectionFinishedEvent.Publish(new GetJsonSelectionFinishedEventArgs(selectedLayer.Key));
             });
-
-            string x = "processing";
         }
 
     }

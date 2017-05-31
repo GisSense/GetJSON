@@ -86,7 +86,6 @@
     <AddInContent Include="Images\AddInDesktop32.png" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContextTest.cs" />
     <Compile Include="Events\GetJsonSelectionFinishedEvent.cs" />
     <Compile Include="DockpaneGJ.xaml.cs">
       <DependentUpon>DockpaneGJ.xaml</DependentUpon>

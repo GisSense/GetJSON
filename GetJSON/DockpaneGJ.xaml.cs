@@ -73,6 +73,9 @@ namespace GetJSON
                 else if (FrameworkApplication.GetPlugInWrapper("GetJSON_PointerTool").Enabled)
                 {
                     if (myCmd.CanExecute(null)) myCmd.Execute(null);
+                } else
+                {
+                    if (myCmd.CanExecute(null)) myCmd.Execute(null);
                 }
             }
 
@@ -106,6 +109,15 @@ namespace GetJSON
             (sender as DispatcherTimer).Stop();
             lblMessage.Foreground = Brushes.Blue;
         }
-        
+
+        private void btnCopyText_Click(object sender, RoutedEventArgs e)
+        {
+            //copy to clipboard
+            this.txbJSON.SelectAll();
+            this.txbJSON.Copy();
+            this.txbJSON.Select(0, 0);
+            this.txbJSON.Focus();
+            ShowMessage("Text copied", Brushes.Blue, 1);
+        }
     }
 }

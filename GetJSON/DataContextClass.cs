@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace GetJSON
 {
-    public class DataContextTest : INotifyPropertyChanged
+    public class DataContextClass : INotifyPropertyChanged
     {
-        private static DataContextTest instance;
+        private static DataContextClass instance;
         public event PropertyChangedEventHandler PropertyChanged;
         private string txtJson = "";
 
-        private DataContextTest()
+        private DataContextClass()
         {
         }
 
-        public static DataContextTest Instance
+        public static DataContextClass Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new DataContextTest();
+                    instance = new DataContextClass();
                 }
                 return instance;
             }
