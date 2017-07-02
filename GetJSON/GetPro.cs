@@ -88,6 +88,8 @@ namespace GetJSON
                 string contents = File.ReadAllText(@filename);
                 //fill the textbox
                 DockpaneGJViewModel.UpdateText(contents);
+                //delete the file
+                File.Delete(filename);
             } else
             {
                 DockpaneGJViewModel.UpdateText("Sorry, but features can't be converted to JSON. " + Environment.NewLine + "Response: " + resultaat.ReturnValue);
