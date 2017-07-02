@@ -8,10 +8,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("GetJSON")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Acme")]
+[assembly: AssemblyCompany("GisSense BV")]
 [assembly: AssemblyProduct("GetJSON")]
-[assembly: AssemblyCopyright("Copyright © Acme 2016")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Free of use under LPGL")]
+[assembly: AssemblyTrademark("GetJSON")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

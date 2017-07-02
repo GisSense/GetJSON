@@ -95,6 +95,8 @@ namespace GetJSON
     {
         protected override void OnClick()
         {
+            //About...
+            new AboutGetJSON().ShowDialog();
         }
     }
 }
