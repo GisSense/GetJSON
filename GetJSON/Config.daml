@@ -1,7 +1,8 @@
-﻿<ArcGIS defaultAssembly="GetJSON.dll" defaultNamespace="GetJSON" xmlns="http://schemas.esri.com/DADF/Registry" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.esri.com/DADF/Registry file:///C:/Program%20Files/ArcGIS/Pro/bin/ArcGIS.Desktop.Framework.xsd">
-  <AddInInfo id="{6fc72a2e-1b4b-4ef5-8e6f-7432a7c5fca1}" version="1.1" desktopVersion="2.0">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArcGIS defaultAssembly="GetJSON.dll" defaultNamespace="GetJSON" xmlns="http://schemas.esri.com/DADF/Registry" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.esri.com/DADF/Registry file:///C:/Program%20Files/ArcGIS/Pro/bin/ArcGIS.Desktop.Framework.xsd">
+  <AddInInfo id="{6fc72a2e-1b4b-4ef5-8e6f-7432a7c5fca1}" version="2.0" desktopVersion="3.1.41833">
     <Name>GetJSON</Name>
-    <Description>GetJSON description</Description>
+    <Description>Creates a JSON output from a layer in ArcGIS Pro</Description>
     <Image>Images\AddinDesktop32.png</Image>
     <Author>C.Kleiboer</Author>
     <Company>GisSense BV</Company>
@@ -26,24 +27,22 @@
       <groups>
         <!-- comment this out if you have no controls on the Addin tab to avoid
               an empty group-->
-        <group id="GetJSON_Group1" caption="GetJSON" appearsOnAddInTab="true">
+        <group id="GetJSON_Group1" caption="GetJSON" appearsOnAddInTab="true" keytip="GetJSON">
           <!-- host controls within groups -->
           <button refID="GetJSON_DockpaneGJ_ShowButton" size="large" />
           <tool refID="GetJSON_PointerTool" size="large" />
         </group>
       </groups>
       <controls>
-        <dynamicMenu id="DynamicMenu_SelectLayer"
-          className="DynamicSelectLayerMenu"
-          caption="Select layer" />
+        <dynamicMenu id="DynamicMenu_SelectLayer" className="DynamicSelectLayerMenu" caption="Select layer" />
         <!-- add your controls here -->
-        <button id="GetJSON_DockpaneGJ_ShowButton" caption="Show Window" className="DockpaneGJ_ShowButton" loadOnClick="true" smallImage="Images\btnGetJSON16.png" largeImage="Images\btnGetJSON128.png">
+        <button id="GetJSON_DockpaneGJ_ShowButton" caption="Show Window" className="DockpaneGJ_ShowButton" loadOnClick="true" smallImage="Images\btnGetJSON16.png" largeImage="Images\btnGetJSON128.png" keytip="Show Window">
           <tooltip heading="Show Dockpane">Show Dockpane<disabledText /></tooltip>
         </button>
-        <button id="GetJSON_DockpaneGJ_MenuButton" caption="About..." className="DockpaneGJ_MenuButton" loadOnClick="true">
+        <button id="GetJSON_DockpaneGJ_MenuButton" caption="About..." className="DockpaneGJ_MenuButton" loadOnClick="true" keytip="About">
           <tooltip heading="About...">Who made this?<disabledText /></tooltip>
         </button>
-        <tool id="GetJSON_PointerTool" caption="Collect Tool" className="PointerTool" loadOnClick="true" smallImage="Images\btnGetJSONCollect16.png" largeImage="Images\btnGetJSONCollect128.png" condition="esri_mapping_mapPane">
+        <tool id="GetJSON_PointerTool" caption="Collect Tool" className="PointerTool" loadOnClick="true" smallImage="Images\btnGetJSONCollect16.png" largeImage="Images\btnGetJSONCollect128.png" condition="esri_mapping_mapPane" keytip="Collect Tool">
           <tooltip heading="Collect Tool">Collect Tool<disabledText /></tooltip>
         </tool>
       </controls>
@@ -57,7 +56,6 @@
           <button refID="GetJSON_DockpaneGJ_MenuButton" />
         </menu>
       </menus>
-      
     </insertModule>
   </modules>
 </ArcGIS>

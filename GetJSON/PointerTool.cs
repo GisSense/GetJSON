@@ -28,7 +28,7 @@ namespace GetJSON
             Dictionary<BasicFeatureLayer, List<long>> allfeatures = new Dictionary<BasicFeatureLayer, List<long>>();
             await QueuedTask.Run(() => 
             {
-                allfeatures = ActiveMapView.SelectFeatures(geometry, SelectionCombinationMethod.New, false, false);
+                allfeatures = ActiveMapView.SelectFeatures(geometry, SelectionCombinationMethod.New, false, false).ToDictionary<BasicFeatureLayer>();
             });
 
             //2 build a context menu with the layers and (re)select by user's layer-choice
